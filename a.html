@@ -1,7 +1,48 @@
-<iframe
-  src="https://your-site.netlify.app/lottie.html"
-  width="820"
-  height="320"
-  style="border:none;"
-  loading="lazy">
-</iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lottie Scroll</title>
+
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <dotlottie-wc
+    id="scrollLottie"
+    src="https://lottie.host/6cd8f2fe-737d-497b-b557-333029a08865/rAuWjEZtwM.lottie"
+    style="width: 800px; height: 300px;"
+    loop>
+  </dotlottie-wc>
+
+  <script>
+    const lottie = document.getElementById("scrollLottie");
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          lottie.stop();
+          lottie.play();
+        } else {
+          lottie.stop();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(lottie);
+  </script>
+
+</body>
+</html>
